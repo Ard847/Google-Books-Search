@@ -1,0 +1,26 @@
+header{
+    border-bottom:3px solid black;
+    height :80px;
+}
+
+ul{
+    list-style: none;
+    display: inline-block;
+    display: flex;
+    padding:10px;
+}
+
+li{
+    display: inline-block;
+    margin-right:2.5%;
+}
+
+div#header{
+    border:3px solid black;
+    margin-left:5%;
+    margin-right: 5%;
+    margin-top: 5%;
+    height: 150px;
+}
+
+

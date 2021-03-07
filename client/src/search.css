@@ -1,0 +1,38 @@
+div#book, div#results{
+    border:3px solid black;
+    margin-top: 5%;
+    margin-left:5%;
+    margin-right: 5%;   
+}
+
+h3,p,h4{
+    text-align: left;
+}
+
+input{
+    width:90%;
+    border:3px solid black;
+    margin-bottom:1.5%;
+}
+
+button#search{
+     display: block;
+     margin-left:90.5%;
+     border:1px solid black;
+     margin-bottom: 2.5%;
+}
+
+div#results > div{
+    border:3px solid black;
+    margin-left:2%;
+    margin-right: 2%;
+}
+
+img, p#description {
+    display: flex;
+    text-align: justify;
+}
+
+p#author{
+    margin-left:7.5%;
+}
