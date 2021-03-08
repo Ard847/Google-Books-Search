@@ -57,7 +57,7 @@ const Search = () => {
                                 <Container>
                                     <Row>
                                         <Col md = "10"><h4>{name.volumeInfo.title}</h4></Col>
-                                        <Col md = "2"><button>View</button> <button onClick = {() => save(name.volumeInfo.title,name.volumeInfo.authors,name.volumeInfo.imageLinks.thumbnail,name.volumeInfo.description,name.selfLink)}>Save</button></Col>
+                                        <Col md = "2"><button><a href = {name.selfLink}  target="_blank" rel="noreferrer">View</a></button> <button onClick = {() => save(name.volumeInfo.title,name.volumeInfo.authors,name.volumeInfo.imageLinks.thumbnail,name.volumeInfo.description,name.selfLink)}>Save</button></Col>
                                     </Row>
                                 </Container>
                                             <p id = "author">Written by {name.volumeInfo.authors}</p>
