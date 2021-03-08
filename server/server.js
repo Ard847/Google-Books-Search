@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const book = require("./model")
 const app = express();
 const cors = require('cors');
+const path = require("path")
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
