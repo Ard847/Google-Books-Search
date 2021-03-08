@@ -5,22 +5,40 @@ import './search.css'
 
 const Search = () => {
     const [data,setData] =  useState([])
+    const [text,setText] = useState();
     const type = (evt) => {
-        console.log(evt.target.value)
+        setText(evt.target.value)
     }
     const click = async () => {
-        const response = await fetch("http://localhost:3001/api/books",{
-            method: 'POST',
-            body: JSON.stringify()
-        })
-        if (response.ok){
-            const api = await response.json()
-            setData( (data) => [...data,api])
-            console.log(data)
-        }else{
-            console.log("There is a problem")
+        setText(text)
+        let response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${text}`)
+        response = await response.json()
+        setData(response.items)
+    }
+
+    const save = (titleN,authorsN,imageN,descriptionN,linkN) => {
+        const books = {
+            authors :authorsN,
+            description : descriptionN,
+            image : imageN,
+            link : linkN,
+            title : titleN,
         }
-        
+        fetch('/api/books', {
+            method: 'POST', // or 'PUT'
+            headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+             },
+            body: JSON.stringify({books}),
+        })
+        .then(response => response.json())
+        .then(res => {
+            setData(res)
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });   
     }
     return(
         <div>
@@ -31,23 +49,23 @@ const Search = () => {
                  <button id = "search" onClick = {() => click()}>Search</button>
             </div>
 
-           { data[0] && (<div id = "results">
+           { data.length > 0 && (<div id = "results">
                 <h3>Results</h3>
                     {data.map((name) => {
                         return(
-                            <div>
+                            <div key = {name.id}>
                                 <Container>
                                     <Row>
-                                        <Col md = "10"><h4>{name.Answer.title}</h4></Col>
-                                        <Col md = "2"><button>View</button> <button>Save</button></Col>
+                                        <Col md = "10"><h4>{name.volumeInfo.title}</h4></Col>
+                                        <Col md = "2"><button>View</button> <button onClick = {() => save(name.volumeInfo.title,name.volumeInfo.authors,name.volumeInfo.imageLinks.thumbnail,name.volumeInfo.description,name.selfLink)}>Save</button></Col>
                                     </Row>
                                 </Container>
-                                            <p id = "author">Written by {name.Answer.authors}</p>
-                                <div>
+                                            <p id = "author">Written by {name.volumeInfo.authors}</p>
+                                <div key = {name.id}>
                                     <Container>
                                         <Row> 
-                                            <Col md = "2"><img src = {name.Answer.image} alt ={name.Answer.title + "book photo"}/></Col>
-                                            <Col md = "10"><p id = "description">{name.Answer.description}</p></Col>
+                                            <Col md = "2"><img src = {name.volumeInfo.imageLinks.thumbnail} alt ={`${name.volumeInfo.title} book`}/></Col>
+                                            <Col md = "10"><p id = "description">{name.volumeInfo.description}</p></Col>
                                         </Row>
                                     </Container>
                                 </div>
