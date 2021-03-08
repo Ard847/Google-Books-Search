@@ -40,7 +40,7 @@ const Saved =  () => {
                             <Container>
                                     <Row>
                                         <Col md = "10"><h4>{name.title}</h4></Col>
-                                        <Col md = "2"><button><a href = {name.selfLink}  target="_blank" rel="noreferrer">View</a></button> <button onClick = {() => dele(name._id)}>Delete</button></Col>
+                                        <Col md = "2"><button><a href = {name.link}  target="_blank" rel="noreferrer">View</a></button> <button onClick = {() => dele(name._id)}>Delete</button></Col>
                                     </Row>
                                 </Container>
                                             <p id = "author">Written by {name.authors}</p>
