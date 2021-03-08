@@ -5,12 +5,12 @@ const book = require("./model")
 const app = express();
 const cors = require('cors');
 const path = require("path")
+ 
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-
-app.use(express.static(path.join(__dirname, "client", "build")))
+app.use(express.static(path.join(__dirname, "../client/build")))
 
 
 /* const connect = async() => {
@@ -52,7 +52,7 @@ app.delete("/api/books/:id", async (req,res) => {
 })
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+  res.sendFile(path.join(__dirname, "../client/build/index.html"));
 });
 
 app.listen(port, () => {
