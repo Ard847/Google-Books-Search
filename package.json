@@ -9,7 +9,7 @@
     "server": "cd server && npx nodemon server.js",
     "dev": "concurrently --kill-others-on-fail 'npm:server' 'npm:client'",
     "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build",
-    "start": "cd server node server.js"
+    "start": "node server/server.js"
   },
   "repository": {
     "type": "git",
@@ -31,5 +31,8 @@
   },
   "devDependencies": {
     "concurrently": "^6.0.0"
-  }
+  },
+  "engines": {
+    "node": "10.16.0"
+}
 }
